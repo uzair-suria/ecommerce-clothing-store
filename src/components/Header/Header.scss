@@ -1,0 +1,26 @@
+.header {
+  width: 100%;
+  // height: 70px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+
+  .options {
+    width: 70%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .option {
+      margin-left: 10px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #708090;
+      font-size: 1.2rem;
+      transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
+      &:hover {
+        color: #324150;
+      }
+    }
+  }
+}
