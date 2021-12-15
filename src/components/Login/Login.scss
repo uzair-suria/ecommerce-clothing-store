@@ -1,0 +1,15 @@
+.login {
+  // max-width: 350px;
+  display: flex;
+  flex-direction: column;
+
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: stretch;
+
+    & .button {
+      flex: 1 1 0px;
+    }
+  }
+}
