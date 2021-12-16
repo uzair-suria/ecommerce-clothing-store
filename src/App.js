@@ -3,7 +3,7 @@ import React from "react";
 import { Route, Routes } from "react-router";
 import "./App.css";
 import Header from "./components/Header/Header";
-import Sandbox from "./components/Sandbox/Sandbox";
+// import Sandbox from "./components/Sandbox/Sandbox";
 import HomePage from "./pages/Homepage/Homepage";
 import LoginRegister from "./pages/LoginRegister/LoginRegister";
 import Shop from "./pages/Shop/Shop";
@@ -45,7 +45,7 @@ class App extends React.Component {
           <Route path="/hats" element={<HatsPage />} />
           <Route path="/login" element={<LoginRegister />} />
           {/* Add component Sandbox page for creating and styling new components */}
-          <Route path="/sandbox" element={<Sandbox />} />
+          {/* <Route path="/sandbox" element={<Sandbox />} /> */}
         </Routes>
       </div>
     );
