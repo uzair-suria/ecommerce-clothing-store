@@ -6,7 +6,7 @@ const MenuItem = ({ title, imageUrl, size, linkUrl }) => {
   // console.log(linkUrl);
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location.pathname);
+  // console.log(location.pathname);
   return (
     <div
       style={{ backgroundImage: `url(${imageUrl})` }}
