@@ -1,4 +1,5 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { onSnapshot } from "firebase/firestore";
 import React from "react";
 import { Route, Routes } from "react-router";
 import "./App.css";
@@ -7,6 +8,7 @@ import Header from "./components/Header/Header";
 import HomePage from "./pages/Homepage/Homepage";
 import LoginRegister from "./pages/LoginRegister/LoginRegister";
 import Shop from "./pages/Shop/Shop";
+import { auth, createUserProfileDocument } from "./Utils/firebase.utils";
 
 const HatsPage = () => (
   <div>
@@ -24,10 +26,21 @@ class App extends React.Component {
 
   unsubscribeFromAuth = null;
   componentDidMount() {
-    this.unsubscribeFromAuth = onAuthStateChanged(getAuth(), (user) => {
-      this.setState({ currentUser: user });
-
-      console.log(user);
+    this.unsubscribeFromAuth = onAuthStateChanged(auth, async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        onSnapshot(userRef, (snapShot) => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data(),
+            },
+          });
+          console.log(this.state);
+        });
+      } else {
+        this.setState({ currentUser: userAuth });
+      }
     });
   }
 
