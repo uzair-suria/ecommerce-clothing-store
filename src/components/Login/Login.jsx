@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { loginWithGoogle } from "../../Utils/firebase/firebase.utils";
+import { loginWithGoogle } from "../../Utils/firebase.utils";
 import Button from "../Button/Button";
 import FormInput from "../FormInput/FormInput";
 
