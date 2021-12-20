@@ -1,4 +1,4 @@
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { onSnapshot } from "firebase/firestore";
 import React from "react";
 import { Route, Routes } from "react-router";
@@ -36,7 +36,6 @@ class App extends React.Component {
               ...snapShot.data(),
             },
           });
-          console.log(this.state);
         });
       } else {
         this.setState({ currentUser: userAuth });

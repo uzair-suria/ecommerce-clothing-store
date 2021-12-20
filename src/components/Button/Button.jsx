@@ -7,10 +7,6 @@ const Button = ({ children, isGoogleSignIn, ...otherProps }) => {
     <button
       className={`${isGoogleSignIn ? "google-button" : ""} button`}
       {...otherProps}
-      onClick={(e) => {
-        e.preventDefault();
-        otherProps.onClick();
-      }}
     >
       {children ? children : otherProps.value}
     </button>
