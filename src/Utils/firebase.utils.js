@@ -2,13 +2,9 @@
 import { initializeApp } from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics, logEvent } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD5lxRonz62MeOO6oCO_YgNctdQLOZQT90",
@@ -19,9 +15,34 @@ const firebaseConfig = {
   appId: "1:586214583518:web:41d9a950fa2fc35636664f",
   measurementId: "G-H1P8GDE7KX",
 };
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+// TODO: GET MORE INFO ABOUT EVENT LOGGING FOR GOOGLE ANALYTICS
+logEvent(analytics);
+
+const db = getFirestore();
+
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if (!userAuth) return;
+  const userRef = doc(db, `users/${userAuth.uid}`);
+  const userSnap = await getDoc(userRef);
+
+  if (!userSnap.exists()) {
+    const { displayName, email } = userAuth;
+    const registrationDate = new Date();
+    try {
+      setDoc(userRef, {
+        displayName,
+        email,
+        registrationDate,
+        ...additionalData,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  return userRef;
+};
 
 const provider = new GoogleAuthProvider();
 
@@ -29,7 +50,7 @@ provider.setCustomParameters({
   prompt: "select_account",
 });
 
-const auth = getAuth();
+export const auth = getAuth();
 export const loginWithGoogle = () =>
   signInWithPopup(auth, provider)
     .then((result) => {
