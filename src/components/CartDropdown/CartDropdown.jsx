@@ -8,7 +8,11 @@ import "./CartDropdown.scss";
 const CartDropdown = ({ hidden }) => (
   <div>
     <div className={`cart-dropdown ${hidden ? "hidden" : "shown"}`}>
-      <div className="cart-items">{/* {} */}</div>
+      <div className="cart-items">
+        {[1, 2, 3, 4, 5].map((i) => (
+          <div className="cart-item">Item {i}</div>
+        ))}
+      </div>
       <Button>Go To Checkout</Button>
     </div>
   </div>
