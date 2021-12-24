@@ -1,24 +1,39 @@
+@keyframes cart-animation {
+  from {
+    height: 0px;
+    border: none;
+  }
+  to {
+    height: 240px;
+    border: 1px solid black;
+  }
+}
+
 .cart-dropdown {
   position: absolute;
-  height: 350px;
   background-color: #fff;
+  border: 1px solid black;
+  width: 250px;
+  height: 350px;
   top: 75px;
   right: 10px;
-  border: black 1px solid;
-  width: 250px;
+  z-index: 3;
   display: flex;
   flex-direction: column;
-  padding: 10px 5px;
+  align-content: center;
   justify-content: space-between;
-  z-index: 3;
-  @media screen and (min-width: 1000px) {
-  }
-  .cart-items {
-    display: flex;
-    flex-direction: column;
-  }
-  button {
-    margin: 0 auto;
+
+  transition-property: height, opacity;
+  transition-duration: 200ms, 20ms;
+  transition-delay: 0s, 10ms;
+  transition-timing-function: linear;
+
+  &.hidden {
+    height: 0px;
+    border: none;
+    & button {
+      opacity: 0;
+    }
   }
 }
 
