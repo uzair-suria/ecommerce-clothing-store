@@ -1,6 +1,9 @@
 $border-radius: 0px;
 $card-shadow: none; /*0 4px 8px 0 rgba(0, 0, 0, 0.2)*/
 $footer-border-radius: 0 0 $border-radius $border-radius;
+$backdrop-filter: blur(10px);
+$hover-bg: rgba(255, 255, 255, 0.4);
+$hover-transition: ease-in-out 200ms;
 
 .collection-item {
   height: 350px;
@@ -10,21 +13,49 @@ $footer-border-radius: 0 0 $border-radius $border-radius;
   border-radius: $border-radius;
   margin-bottom: 10px;
 
-  transition: 0.5s cubic-bezier(0.065, 0.84, 0.44, 1);
+  & button {
+    position: absolute;
+    top: calc(50% - 25px);
+    left: calc(50% - 90px);
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+    font-weight: 600;
+    border: none;
+    opacity: 0;
+    border-radius: 10px;
+    transition: $hover-transition;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 50px;
+      backdrop-filter: $backdrop-filter;
+      font-weight: 600;
+      color: ivory;
+    }
+  }
+
   .image {
     height: 100%;
     background-size: cover;
     background-position: center;
     border-radius: $border-radius;
+    z-index: 100;
   }
 
   &:hover {
     box-shadow: $card-shadow;
+
+    & button {
+      display: initial;
+      opacity: 1;
+    }
   }
 
   &:hover .collection-footer {
-    backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: $backdrop-filter;
+    background-color: $hover-bg;
   }
 
   .collection-footer {
@@ -39,14 +70,8 @@ $footer-border-radius: 0 0 $border-radius $border-radius;
     border-radius: $footer-border-radius;
     padding: 5px 5px;
 
-    background-color: rgba(255, 255, 255, 1);
-    opacity: 0.8;
-    transition: 0.5s cubic-bezier(0.065, 0.84, 0.44, 1);
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: $hover-transition;
     cursor: pointer;
-
-    &span {
-      // padding-left: 5px;
-      // padding-right: 5px;
-    }
   }
 }

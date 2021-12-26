@@ -1,6 +1,7 @@
 .button {
   min-width: 180px;
-  // width: auto;
+  display: flex;
+  justify-content: center;
   white-space: nowrap;
   height: 50px;
   letter-spacing: 0.5px;
