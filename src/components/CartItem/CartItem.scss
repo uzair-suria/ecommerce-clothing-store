@@ -1,0 +1,17 @@
+.cart-item {
+  // border: 1px solid gainsboro;
+  display: flex;
+  align-items: center;
+  margin: 10px 5px;
+  & .item-details {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    color: #424242;
+  }
+  & img {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+  }
+}

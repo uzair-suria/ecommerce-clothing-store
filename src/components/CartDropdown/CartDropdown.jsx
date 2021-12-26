@@ -2,24 +2,24 @@ import React from "react";
 import { connect } from "react-redux";
 
 import Button from "../Button/Button";
+import CartItem from "../CartItem/CartItem";
 
 import "./CartDropdown.scss";
 
-const CartDropdown = ({ hidden }) => (
+const CartDropdown = ({ hidden, cartItems }) => (
   <div>
     <div className={`cart-dropdown ${hidden ? "hidden" : "shown"}`}>
       <div className="cart-items">
-        {[1, 2, 3, 4, 5].map((i) => (
-          <div className="cart-item" key={i}>
-            Item {i}
-          </div>
+        {cartItems.map((item, i) => (
+          <CartItem item={item} key={`cart-item-${i}`} />
         ))}
       </div>
       <Button>Go To Checkout</Button>
     </div>
   </div>
 );
-const mapStateToProps = ({ cart: { hidden } }) => ({
+const mapStateToProps = ({ cart: { hidden, cartItems } }) => ({
   hidden,
+  cartItems,
 });
 export default connect(mapStateToProps)(CartDropdown);
